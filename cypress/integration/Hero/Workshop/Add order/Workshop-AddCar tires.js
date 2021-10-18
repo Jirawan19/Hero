@@ -10,7 +10,6 @@ context("Warehouse", () => {
     supplier();
     Addorder();
     checkorder();
-    
   });
 });
 
