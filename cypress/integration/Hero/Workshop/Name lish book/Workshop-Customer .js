@@ -23,20 +23,20 @@ const AddCustomer1 = () => {
   // กรอกข้อมูลลูกค้า
   taxAddCustomer1(getRandomNumberAddCustomer(0, 2));
   // taxAddCustomer3(getRandomNumberAddCustomer(0, 3))
-  cy.get("#txtIdCardNumber").click().type("1100201520688");
-  // taxAddCustomer(getRandomNumberAddCustomer(0, 12))
-  cy.get("#txtAddress").click().type("168/106");
+  cy.get("#txtIdCardNumber").click({ force: true }).type("1100201520688");
+  taxAddCustomer(getRandomNumberAddCustomer(0, 12))
+  cy.get("#txtAddress").click({ force: true }).type("168/106");
   cy.get("#txtDistrict > .vth-addr-input-container > .vth-addr-input")
-    .click()
+    .click({ force: true })
     .type("คลองถนน");
   cy.get("#txtPostCode > .vth-addr-input-container > .vth-addr-input")
     .clear()
-    .click()
+    .click({ force: true })
     .type("10220")
     .type("{enter}");
   cy.get("#txtSubDistrict > .vth-addr-input-container > .vth-addr-input")
     .clear()
-    .click()
+    .click({ force: true })
     .type("สายไหม")
     .type("{enter}");
   taxAddCustomer6(getRandomNumberAddCustomer(0, 10));
@@ -48,7 +48,7 @@ const getRandomNumberAddCustomer = (min, max) => {
   return Math.random() * (max - min) + min;
 };
 const taxAddCustomer = (textNo) => {
-  cy.get("#txtTelNo").click().type(textNo);
+  cy.get("#txtTelNo").click({ force: true }).type(textNo);
 };
 const taxAddCustomer1 = (textNo) => {
   cy.get("#txtName")

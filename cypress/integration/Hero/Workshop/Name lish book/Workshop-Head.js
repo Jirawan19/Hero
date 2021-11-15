@@ -61,7 +61,7 @@ const checkHead = () => {
     cy.get('#tab-employee').click( { force: true })
 
     cy.get('.table-responsive > .table > tbody > :nth-child(1) > :nth-child(4) > .btn')
-        .click()
+        .click({ force: true })
 
     cy.get('#roleEmp')
         .contains("แอดมิน")

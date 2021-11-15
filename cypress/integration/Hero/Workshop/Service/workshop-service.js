@@ -6,15 +6,15 @@ context("Service", () => {
     it("Add Service", () => {
         cy.login("empGrip01", "password")
         AddService()
-        checkservice()
+        // checkservice()
     })
 })
 // เข้ารายการ บริการ
 const AddService = () => {
-    cy.get('#nav-item-5').click()
+    cy.get('#nav-item-5').click({ force: true })
 
     // เพิ่มบริการ
-    cy.get('.el-button').click()
+    cy.get('.el-button').click({ force: true })
 
     // รายละเอียดบริการ
     taxAddService(getRandomAddService(1, 3))
@@ -30,9 +30,9 @@ const AddService = () => {
 // เช็คบริการที่เพิ่มใหม่
 const checkservice = () => {
     cy.get('#nav-item-5')
-        .click()
+        .click({ force: true })
 
-    cy.get('#servicename').click().type("เพิ่มบริการ")
+    cy.get('#servicename').click({ force: true }).type("เพิ่มบริการ")
 
     cy.get('label').click()
     cy.get('label').click()
@@ -41,13 +41,6 @@ const checkservice = () => {
     cy.get('tbody > tr > :nth-child(1)').contains("เพิ่มบริการ")
     cy.get(':nth-child(2) > .btn')
         .click()
-
-
-    cy.get('.text-center > #btnEditBy-0 > img')
-        .click()
-    cy.get('.mr-5')
-        .click()
-
 }
 
 const getRandomAddService = (min, max) => {

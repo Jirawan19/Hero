@@ -59,7 +59,7 @@ const checkTechincian = () => {
 
   cy.get(
     ".table-responsive > .table > tbody > :nth-child(1) > :nth-child(4) > .btn"
-  ).click();
+  ).click({ force: true });
 
   cy.get("#roleEmp").contains("ช่างซ่อม");
 

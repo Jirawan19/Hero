@@ -134,7 +134,7 @@ const Addorderparts = () => {
   // **
 };
 const checkorderparts = () => {
-  cy.get(":nth-child(1) > :nth-child(1) > a > .primary-blue").click();
+  cy.get(":nth-child(1) > :nth-child(1) > a > .primary-blue").click({ force: true });
 
   cy.get("tbody > :nth-child(1) > :nth-child(5)").should(
     "contain.text",
