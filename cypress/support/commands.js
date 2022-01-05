@@ -33,15 +33,20 @@ Cypress.Commands.add("login", (username, password) => {
     cy.get('.btn-global').click()
 })
 
-Cypress.Commands.add("logins", (username, password) => {
-    cy.visit("https://herodemo.autopair.co/")
-    cy.get('form > .col-sm-12 > :nth-child(1) > label').should("contain.text", "ชื่อผู้ใช้งาน")
-    cy.get('#input_username').type(username)
-    cy.get('form > .col-sm-12 > :nth-child(2) > label').should("contain.text", "รหัสผ่าน")
-    cy.get('#input_password').type(password)
-    cy.get('.btn').click()
+Cypress.Commands.add("logOut", () => {
+    cy.get('#dropdownMenuOffset').click()
+    cy.get('.dropdown-menu > :nth-child(2)').click()
 
 })
+Cypress.Commands.add("loginSupplier", (username, password) => {
+    cy.visit("https://herodemo.autopair.co/")
+    // cy.get('form > .col-sm-12 > :nth-child(1) > label').should("contain.text", "ชื่อผู้ใช้งาน")
+    cy.get('#username').click().type(username)
+    // cy.get('form > .col-sm-12 > :nth-child(2) > label').should("contain.text", "รหัสผ่าน")
+    cy.get('#password').click().type(password)
+    cy.get('.btn-global').click()
+})
+
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
     // failing the test
