@@ -8,7 +8,7 @@ context("supplier getLish part+vat", () => {
     })
     it("supplier_getLish ", () => {
         cy.loginSupplier("atp-member1", "atp16011986")
-        // add_store()
+        add_store()
         supplier_getLish()
         check_order()
         cy.logOut()
