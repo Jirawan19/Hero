@@ -166,7 +166,7 @@ const check_order = () => {
 }
 const check_finance = () => {
     cy.get('#nav-item-6').click()
-    cy.get('#btnShowBy-0 > img').click()
+    cy.get('#btnShowBy-1 > img').click()
     cy.wait(1000)
     cy.get('#tab-1').click()
 

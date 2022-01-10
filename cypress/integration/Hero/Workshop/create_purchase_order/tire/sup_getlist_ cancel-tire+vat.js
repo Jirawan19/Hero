@@ -84,13 +84,12 @@ const supplier_getLish = () => {
 
     // แก้ไข
     cy.get('.my-3 > .btn').click({ force: true })
-
-    cy.pause()
     cy.get('.d-xl-block > .table > tbody > tr > .text-left > .primary-blue').contains("255 / 40 R 19")
 
     // ยกเลิกรายการ
     cy.get('#cbxCheckstatus_0').click({ force: true })
-    cy.get(':nth-child(9) > .el-select > .el-input > .el-input__inner').click().type("{downarrow}{downarrow}{enter}", { force: true })
+    cy.get(':nth-child(9) > .el-select > .el-input > .el-input__inner').click({ force: true })
+        .type("{downarrow}{downarrow}{enter}", { force: true })
 
     cy.get('#saveConfirmedit').click()
     cy.get('.swal2-confirm').click()
@@ -118,24 +117,25 @@ const taxStore2 = (textNo) => {
     cy.get(':nth-child(2) > #state-name').click({ force: true }).type("test").type(textNo);
 };
 const check_order = () => {
-   // สถานะเสร็จสิ้น
-   cy.get('.status-border').contains("ยกเลิกรายการทั้งหมด")
-   cy.get('.d-xl-block > .table > tbody > tr > .text-left > .primary-blue').contains("255 / 40 R 19")
-   cy.get('tbody > tr > :nth-child(8)').contains("สินค้าไม่พร้อมส่ง (สินค้าขาดสต๊อก)")
+    // สถานะเสร็จสิ้น
+    cy.get('.status-border').contains("ยกเลิกรายการทั้งหมด")
+    cy.get('.d-xl-block > .table > tbody > tr > .text-left > .primary-blue').contains("255 / 40 R 19")
+    cy.get('tbody > tr > :nth-child(8)').contains("สินค้าไม่พร้อมส่ง (สินค้าขาดสต๊อก)")
 
-   cy.get(':nth-child(1) > .text-right').contains("0.00")
-   cy.get('tfoot > :nth-child(3) > .text-right').contains("0.00")
-   cy.get('tfoot > :nth-child(4) > .text-right').contains("0.00")
+    cy.get(':nth-child(1) > .text-right').contains("0.00")
+    cy.get('tfoot > :nth-child(3) > .text-right').contains("0.00")
+    cy.get('tfoot > :nth-child(4) > .text-right').contains("0.00")
 
     cy.get('#backtoindex').click()
 }
 const check_finance = () => {
-    cy.get('#nav-item-6').click()
-    cy.get('#btnShowBy-0 > img').click()
-    cy.wait(1000)
-    cy.get('#tab-1').click()
+    cy.get('#nav-item-3').click()
+    cy.get(':nth-child(1) > :nth-child(5) > .status-border').contains("ยกเลิกรายการทั้งหมด")
+    cy.get('tbody > :nth-child(1) > :nth-child(4)').contains("บริษัท ออโต้แพร์ จำกัด (อะไหล่ด่วน)")
+    cy.get(':nth-child(1) > :nth-child(1) > a > .primary-blue').click({ force: true })
 
-    cy.get('tbody > :nth-child(1) > :nth-child(1) > .link').click({ force: true })
-    cy.get('tbody > :nth-child(1) > :nth-child(2)').should("contain.text", "บริษัท ออโต้แพร์ จำกัด (อะไหล่ด่วน)")
-    cy.get(':nth-child(2) > .text-right').contains("28,050.01")
+    cy.get('.status-border').contains("ยกเลิกรายการทั้งหมด")
+    cy.get('.table-order-wrapper.d-none > .table > tbody > :nth-child(1) > .text-left > .primary-blue')
+        .contains("255 / 40 R 19")
+    cy.get('tbody > :nth-child(1) > :nth-child(7)').contains("สินค้าไม่พร้อมส่ง (สินค้าขาดสต๊อก)")
 }
