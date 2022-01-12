@@ -2,11 +2,13 @@
 
 context("supplier getLish tire+vat", () => {
     it("purchase_order_tire", () => {
+        cy.pause()
         cy.login("empGrip01", "password");
         purchase_order()
         cy.logOut()
     })
     it("supplier_getLish ", () => {
+        cy.pause()
         cy.loginSupplier("atpf-member1", "atpf16011986")
         // add_store()
         supplier_getLish()
@@ -14,6 +16,7 @@ context("supplier getLish tire+vat", () => {
         cy.logOut()
     })
     it("check_finance", () => {
+        cy.pause()
         cy.login("empGrip01", "password");
         check_finance()
     })
@@ -84,8 +87,8 @@ const supplier_getLish = () => {
 
     // เลือกประเภทการชำระ
     // เงินสด
-    cy.get('.col-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
-        .wait(1000).type("{downarrow}{downarrow}{enter}", { force: true })
+    // cy.get('.col-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
+    //     .wait(1000).type("{downarrow}{downarrow}{enter}", { force: true })
 
     // โอน
     // cy.get('.col-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
@@ -96,9 +99,8 @@ const supplier_getLish = () => {
     //     .wait(1000).type("{downarrow}{downarrow}{downarrow}{downarrow}{enter}", { force: true })
 
     // // บัตร
-    // cy.get('.col-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
-    //     .wait(1000).type("{downarrow}{downarrow}{downarrow}{downarrow}{downarrow}{enter}", { force: true })
-    // กดแก้ไข กรอกรายละเอียด
+    cy.get('.col-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
+        .wait(1000).type("{downarrow}{downarrow}{downarrow}{downarrow}{downarrow}{enter}", { force: true })
 
     // แก้ไข
     cy.get('.my-3 > .btn').click({ force: true })

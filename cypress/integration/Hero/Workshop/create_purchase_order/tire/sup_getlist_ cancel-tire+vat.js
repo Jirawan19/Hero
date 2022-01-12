@@ -2,18 +2,21 @@
 
 context("supplier getLish tire+vat", () => {
     it("purchase_order_tire", () => {
+        cy.pause()
         cy.login("empGrip01", "password");
         purchase_order()
         cy.logOut()
     })
     it("supplier_getLish ", () => {
+        cy.pause()
         cy.loginSupplier("atpf-member1", "atpf16011986")
-        add_store()
+        // add_store()
         supplier_getLish()
         check_order()
         cy.logOut()
     })
     it("check_finance", () => {
+        cy.pause()
         cy.login("empGrip01", "password");
         check_finance()
     })
