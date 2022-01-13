@@ -66,7 +66,7 @@ const check = () => {
     .type("17");
   cy.wait(500);
 
-  cy.get(".row.mt-3 > :nth-child(1) > .btn-search").click();
+  cy.get(".row.mt-3 > :nth-child(1) > .btn-search").click({ force: true });
   cy.wait(500);
 
   cy.get(
@@ -75,7 +75,7 @@ const check = () => {
 
   cy.get(
     "#pane-MAG > #ordersTable > .d-xl-flex > .table > tbody > #inventorys-0 > :nth-child(6) > .btn-details"
-  ).click();
+  ).click({ force: true });
 
   cy.get(
     "#inventorytablemag > .modal-dialog > .modal-content > .modal-body > .form-row.mt-4 > :nth-child(2) > .table-responsive > .table > tbody > .font-weight-bold > :nth-child(2)"

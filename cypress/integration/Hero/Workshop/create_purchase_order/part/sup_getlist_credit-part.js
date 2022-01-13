@@ -2,13 +2,13 @@
 
 context("supplier getLish credit part", () => {
     it("purchase_order_credit-part", () => {
-        cy.pause()
+        // cy.pause()
         cy.login("empGrip01", "password");
         purchase_order()
         cy.logOut()
     })
     it("supplier_getLish ", () => {
-        cy.pause()
+        // cy.pause()
         cy.loginSupplier("atp-member1", "atp16011986")
         // add_store()
         supplier_getLish()
@@ -16,7 +16,7 @@ context("supplier getLish credit part", () => {
         cy.logOut()
     })
     it("check_finance", () => {
-        cy.pause()
+        // cy.pause()
         cy.login("empGrip01", "password");
         check_finance()
     })

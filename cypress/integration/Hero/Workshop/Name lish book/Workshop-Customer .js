@@ -132,9 +132,9 @@ const AddCustomer4 = () => {
 // เช็คผู้จำหน่อยที่พึ่งเพิ่ม
 const checkAddCustomer = () => {
   cy.get("#nav-item-7").click();
-  cy.get("#tab-customer").click();
+  cy.get("#tab-customer").click({ force: true });
 
-  cy.get(':nth-child(1) > [style="width: 11rem;"] > .btn').click();
+  cy.get(':nth-child(1) > [style="width: 11rem;"] > .btn').click({ force: true });
 
   cy.get("#btnBack-1").click();
 };

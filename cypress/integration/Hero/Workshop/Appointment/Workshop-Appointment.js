@@ -5,7 +5,7 @@
 context("Service", () => {
   it("Add Appointment", () => {
     cy.login("empGrip01", "password");
-    addcustomer00();
+    // addcustomer00();
     AddAppointment();
 
     checkAppointment();

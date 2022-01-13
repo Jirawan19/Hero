@@ -19,8 +19,8 @@ const AddEmployee = () => {
 
 // กรอกข้อมูลพนักงาน
 const AddEmployee1 = () => {
-  taxAddEmployee(getRandomNumberAddEmployee(1, 3));
-  cy.get("#roleEmp").select("พนักงานขาย");
+  taxAddEmployee(getRandomNumberAddEmployee(1, 3))
+  cy.get('#roleEmp').click({ force: true }).type("พนักงานขาย",{ force: true }).type("{downarrow}{enter}", { force: true });
   taxAddEmployee2(getRandomNumberAddEmployee(1, 5));
   taxAddEmployee1(getRandomNumberAddEmployee(1, 2));
   taxAddEmployee3(getRandomNumberAddEmployee(0, 10));
@@ -36,10 +36,10 @@ const getRandomNumberAddEmployee = (min, max) => {
   return Math.random() * (max - min) + min;
 };
 const taxAddEmployee = (textNo) => {
-  cy.get("#state-nameEmp").type("เพิ่มพนักงาน ขาย").type(textNo);
+  cy.get("#state-nameEmp").type("เพิ่มพนักงาน ขาย", { force: true }).type(textNo);
 };
 const taxAddEmployee1 = (textNo) => {
-  cy.get("#state-usernameEmp").type("เพิ่มพนักงาน ขาย").type(textNo);
+  cy.get("#state-usernameEmp").type("เพิ่มพนักงาน ขาย", { force: true }).type(textNo);
 };
 const taxAddEmployee2 = (textNo) => {
   cy.get("#state-emailEmp")

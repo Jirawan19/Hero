@@ -2,13 +2,13 @@
 
 context("supplier getLish part+vat", () => {
     it("purchase_order_part", () => {
-        cy.pause()
+        // cy.pause()
         cy.login("empGrip01", "password");
         purchase_order()
         cy.logOut()
     })
     it("supplier_getLish ", () => {
-        cy.pause()
+        // cy.pause()
         cy.loginSupplier("atp-member1", "atp16011986")
         // add_store()
         supplier_getLish()
@@ -16,7 +16,7 @@ context("supplier getLish part+vat", () => {
         cy.logOut()
     })
     it("check_finance", () => {
-        cy.pause()
+        // cy.pause()
         cy.login("empGrip01", "password");
         check_finance()
     })
@@ -88,8 +88,8 @@ const supplier_getLish = () => {
     cy.wait(1000)
     // เลือกประเภทการชำระ
     // เงินสด
-    // cy.get('.col-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
-    //     .wait(1000).type("{downarrow}{downarrow}{enter}", { force: true })
+    cy.get('.col-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
+        .wait(1000).type("{downarrow}{downarrow}{enter}", { force: true })
 
     // โอน
     // cy.get('.col-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
@@ -100,8 +100,8 @@ const supplier_getLish = () => {
     //     .wait(1000).type("{downarrow}{downarrow}{downarrow}{downarrow}{enter}", { force: true })
 
     // // บัตร
-    cy.get('.col-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
-        .wait(1000).type("{downarrow}{downarrow}{downarrow}{downarrow}{downarrow}{enter}", { force: true })
+    // cy.get('.c1ol-3 > .el-select > .el-input > .el-input__inner').click({ force: true })
+    //     .wait(000).type("{downarrow}{downarrow}{downarrow}{downarrow}{downarrow}{enter}", { force: true })
 
     // กดแก้ไข กรอกรายละเอียด
     cy.get('.my-3 > .btn').click({ force: true })
