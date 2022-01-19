@@ -12,7 +12,7 @@ context("Name lish book", () => {
 
 // เข้าหน้าเพิ่มพนักงาน
 const AddEmployee = () => {
-  cy.get("#nav-item-7").click();
+  cy.get("#nav-item-6").click();
   cy.get("#tab-employee").click({ force: true });
   cy.get("#btn-addEmp").click({ force: true });
 };
@@ -20,7 +20,7 @@ const AddEmployee = () => {
 // กรอกข้อมูลพนักงาน
 const AddEmployee1 = () => {
   taxAddEmployee(getRandomNumberAddEmployee(1, 3))
-  cy.get('#roleEmp').click({ force: true }).type("พนักงานขาย",{ force: true }).type("{downarrow}{enter}", { force: true });
+  cy.get('#roleEmp').select("พนักงานขาย")
   taxAddEmployee2(getRandomNumberAddEmployee(1, 5));
   taxAddEmployee1(getRandomNumberAddEmployee(1, 2));
   taxAddEmployee3(getRandomNumberAddEmployee(0, 10));
@@ -36,10 +36,10 @@ const getRandomNumberAddEmployee = (min, max) => {
   return Math.random() * (max - min) + min;
 };
 const taxAddEmployee = (textNo) => {
-  cy.get("#state-nameEmp").type("เพิ่มพนักงาน ขาย", { force: true }).type(textNo);
+  cy.get("#state-nameEmp").type("พนักงานขาย", { force: true }).type(textNo);
 };
 const taxAddEmployee1 = (textNo) => {
-  cy.get("#state-usernameEmp").type("เพิ่มพนักงาน ขาย", { force: true }).type(textNo);
+  cy.get("#state-usernameEmp").type("พนักงานขาย", { force: true }).type(textNo);
 };
 const taxAddEmployee2 = (textNo) => {
   cy.get("#state-emailEmp")
@@ -52,7 +52,7 @@ const taxAddEmployee3 = (textNo) => {
 };
 
 const checkEmploye = () => {
-  cy.get("#nav-item-7").click();
+  cy.get("#nav-item-6").click();
   cy.get("#tab-employee").click({ force: true });
 
   cy.get(

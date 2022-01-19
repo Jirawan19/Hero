@@ -13,7 +13,7 @@ context("Name lish book", () => {
 });
 
 const AddCustomer = () => {
-  cy.get("#nav-item-7").click();
+  cy.get("#nav-item-6").click();
   cy.get("#tab-customer").click({ force: true });
   cy.get("#btn-addCustomer").click({ force: true });
 };
@@ -131,7 +131,7 @@ const AddCustomer4 = () => {
 };
 // เช็คผู้จำหน่อยที่พึ่งเพิ่ม
 const checkAddCustomer = () => {
-  cy.get("#nav-item-7").click();
+  cy.get("#nav-item-6").click();
   cy.get("#tab-customer").click({ force: true });
 
   cy.get(':nth-child(1) > [style="width: 11rem;"] > .btn').click({ force: true });

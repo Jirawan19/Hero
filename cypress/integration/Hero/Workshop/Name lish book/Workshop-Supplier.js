@@ -12,7 +12,7 @@ context("Name lish book", () => {
 
 // เข้าหน้าเพิ่มพนักงาน
 const AddSupplier = () => {
-  cy.get("#nav-item-7").click();
+  cy.get("#nav-item-6").click();
   cy.get("#tab-supplier").click({ force: true });
   cy.get("#btn-addSupplier").click({ force: true });
 };
@@ -34,7 +34,7 @@ const getRandomNumberAddSupplier = (min, max) => {
   return Math.random() * (max - min) + min;
 };
 const taxAddSupplier = (textNo) => {
-  cy.get("#state-name").type("เพิ่มผู้จำหน่าย").type(textNo);
+  cy.get("#state-name").type("ผู้จำหน่าย").type(textNo);
 };
 const taxAddSupplier1 = (textNo) => {
   cy.get("#state-address").type("ดาวเสาร์").type(textNo);
@@ -51,11 +51,11 @@ const taxAddSupplier4 = (textNo) => {
 
 // เช็คผู้จำหน่อยที่พึ่งเพิ่ม
 const checkAddSupplier = () => {
-  cy.get("#nav-item-7").click();
+  cy.get("#nav-item-6").click();
   cy.get("#tab-supplier").click({ force: true });
   cy.get(
     "#pane-supplier > :nth-child(2) > .d-none > .table > tbody > :nth-child(1) > :nth-child(1)"
-  ).contains("เพิ่มผู้จำหน่าย");
+  ).contains("ผู้จำหน่าย");
   cy.get(
     "#pane-supplier > :nth-child(2) > .d-none > .table > tbody > :nth-child(1) > :nth-child(4) > .btn"
   ).click({ force: true });

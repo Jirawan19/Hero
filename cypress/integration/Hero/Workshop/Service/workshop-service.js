@@ -11,9 +11,10 @@ context("Service", () => {
 })
 // เข้ารายการ บริการ
 const AddService = () => {
-    cy.get('#nav-item-5').click({ force: true })
+    cy.get('#nav-item-6').click({ force: true })
 
     // เพิ่มบริการ
+    cy.get('#tab-service').click({ force: true })
     cy.get('.el-button').click({ force: true })
 
     // รายละเอียดบริการ
@@ -29,10 +30,12 @@ const AddService = () => {
 
 // เช็คบริการที่เพิ่มใหม่
 const checkservice = () => {
-    cy.get('#nav-item-5')
+    cy.get('#nav-item-6')
         .click({ force: true })
+    cy.get('#tab-service').click({ force: true })
 
-    cy.get('#servicename').click({ force: true }).type("เพิ่มบริการ",{ force: true })
+
+    cy.get('#servicename').click({ force: true }).type("เพิ่มบริการ", { force: true })
 
     cy.get('label').click({ force: true })
     cy.get('label').click({ force: true })
@@ -40,7 +43,7 @@ const checkservice = () => {
 
     cy.get('tbody > tr > :nth-child(1)').contains("เพิ่มบริการ")
     cy.get(':nth-child(2) > .btn')
-        .click()
+        .click({ force: true })
 }
 
 const getRandomAddService = (min, max) => {
@@ -49,10 +52,10 @@ const getRandomAddService = (min, max) => {
 }
 const taxAddService = (textNo) => {
     cy.get('#state-name')
-        .type("เพิ่มบริการ",{ force: true }).type(textNo)
+        .type("เพิ่มบริการ", { force: true }).type(textNo)
 }
 const taxAddService1 = (textNo) => {
     cy.get('#description')
-        .type("เพิ่มบริการ",{ force: true }).type(textNo)
+        .type("เพิ่มบริการ", { force: true }).type(textNo)
 }
 
