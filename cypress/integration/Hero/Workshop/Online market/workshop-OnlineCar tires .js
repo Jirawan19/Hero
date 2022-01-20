@@ -4,7 +4,7 @@
 
 context("workshop-OnlineCar tires", () => {
   it("workshop-OnlineCar tires", () => {
-    cy.login("empGrip01", "password");
+    cy.login("1919", "1919");
     orderOnlineTires();
     orderOnlineTires1();
     checkOrderOnlineTires();

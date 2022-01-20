@@ -4,7 +4,7 @@
 context("Service", () => {
 
     it("Add Service", () => {
-        cy.login("empGrip01", "password")
+        cy.login("1919", "1919")
         AddService()
         checkservice()
     })

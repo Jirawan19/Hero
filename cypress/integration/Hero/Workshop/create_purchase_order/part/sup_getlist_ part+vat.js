@@ -3,7 +3,7 @@
 context("supplier getLish part+vat", () => {
     it("purchase_order_part", () => {
         // cy.pause()
-        cy.login("empGrip01", "password");
+        cy.login("1919", "1919");
         purchase_order()
         cy.logOut()
     })
@@ -15,11 +15,11 @@ context("supplier getLish part+vat", () => {
         check_order()
         cy.logOut()
     })
-    it("check_finance", () => {
-        // cy.pause()
-        cy.login("empGrip01", "password");
-        check_finance()
-    })
+    // it("check_finance", () => {
+    //     // cy.pause()
+    //     cy.login("empGrip01", "password");
+    //     check_finance()
+    // })
 })
 const purchase_order = () => {
     cy.get('#nav-item-0').click()

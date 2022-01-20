@@ -5,17 +5,17 @@ context("Warehouse", () => {
     cy.visit("https://herodemo.autopair.co/");
   });
   it("Car tiees", () => {
-    cy.login("empGrip01", "password");
+    cy.login("1919", "1919");
     Cartiees();
     Cartiees1();
     confimeCartiees();
 
-    check();
+    // check();
   });
 });
 // รายละเอียดสินค้า
 const Cartiees = () => {
-  cy.get("#nav-item-7").click({ force: true });
+  cy.get("#nav-item-6").click({ force: true });
   cy.get("#tab-inventory").click({ force: true });
   cy.wait(2000);
   cy.get("#btn-addInventory").click({ force: true });
@@ -28,7 +28,7 @@ const Cartiees = () => {
   taxCartiees4(getRandomNumberCartiees(0, 10));
 
   cy.get("#txtSelectWidth").click().type("{downarrow}{downarrow}{enter}");
-  cy.get("#txtSelectSeries").click().type("{downarrow}{downarrow}{enter}");
+  cy.get("#txtSelectSeries").click().type("10.5").type("{downarrow}{downarrow}{enter}");
   cy.get("#txtSelectRim").click().type("{downarrow}{downarrow}{enter}");
 
   cy.get("#btnnextTirestep").click();
@@ -57,7 +57,6 @@ const taxCartiees4 = (textNo) => {
 // รายละเอียดราคา
 const Cartiees1 = () => {
   cy.get("#salesPriceTire").clear().type("100");
-
   cy.get("#promotionTire").clear().type("50");
 
   cy.get("#tiredot-0").clear().type("0319");
@@ -86,7 +85,7 @@ const check = () => {
   cy.get("#txtSelectRim")
     .click({ force: true })
     .type("{downarrow}{enter}");
-    
+
   cy.get(".row.mt-4 > :nth-child(1) > .btn-search").click({ force: true });
   cy.wait(500);
   cy.get(

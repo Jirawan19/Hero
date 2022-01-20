@@ -2,7 +2,7 @@
 
 context("Name lish book", () => {
   it("Add Customer", () => {
-    cy.login("empGrip01", "password");
+    cy.login("1919", "1919");
     AddCustomer();
     AddCustomer1();
     AddCustomer2();

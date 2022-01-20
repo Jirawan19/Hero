@@ -5,7 +5,7 @@ context("Name lish book", () => {
     cy.visit("https://herodemo.autopair.co/");
   });
   it("Add Employee", () => {
-    cy.login("empGrip01", "password");
+    cy.login("1919", "1919");
     AddTechincian();
     AddTechincian1();
 

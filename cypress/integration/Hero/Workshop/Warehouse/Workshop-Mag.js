@@ -5,18 +5,18 @@ context("Warehouse", () => {
     cy.visit("https://herodemo.autopair.co/");
   });
   it("Mag", () => {
-    cy.login("empGrip01", "password");
+    cy.login("1919", "1919");
     Mag();
     Mag1();
     Mag2();
     confimeMag();
 
-    check();
+    // check()
   });
 });
 
 const Mag = () => {
-  cy.get("#nav-item-7").click({ force: true });
+  cy.get("#nav-item-6").click({ force: true });
   cy.get("#tab-inventory").click({ force: true });
   cy.get("#btn-addInventory").click({ force: true });
   cy.get("#tab-MAG").click({ force: true });

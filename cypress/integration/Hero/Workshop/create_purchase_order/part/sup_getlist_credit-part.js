@@ -15,11 +15,11 @@ context("supplier getLish credit part", () => {
         check_order()
         cy.logOut()
     })
-    it("check_finance", () => {
-        // cy.pause()
-        cy.login("empGrip01", "password");
-        check_finance()
-    })
+    // it("check_finance", () => {
+    //     // cy.pause()
+    //     cy.login("empGrip01", "password");
+    //     check_finance()
+    // })
 })
 const purchase_order = () => {
     cy.get('#nav-item-0').click()
