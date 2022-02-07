@@ -2,7 +2,7 @@
 
 context("Warehouse", () => {
   it("Mag", () => {
-    cy.login("empGrip01", "password");
+    cy.login("1919", "1919");
     // AddMag();
     // supplier();
 

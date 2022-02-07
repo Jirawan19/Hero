@@ -26,15 +26,15 @@ const Mag = () => {
 const Mag1 = () => {
   cy.get("#ItemCodeMag").type("เพิ่มแม็ก");
   cy.get("#brandMag").type("เพิ่มแม็ก 19");
-  cy.get("#cb-0").type("19");
-  cy.get("#pcdhod-0").type("5");
-  cy.get("#pcdsize-0").type("5");
-  cy.get("#pcddec-0").type("5");
+  cy.get("#cb-0").type("60");
+  cy.get("#pcdhod-0").type("50");
+  cy.get("#pcdsize-0").type("50");
+  cy.get("#pcddec-0").type("5-");
   cy.get("#itemoffsetMag").type("500");
   cy.get("#itemcolorMag").type("white");
-  cy.get("#model_mag").type("5");
-  cy.get("#skuMag").type("25");
-  cy.get("#widthMag").click().type("40");
+  cy.get("#model_mag").type("50");
+  cy.get("#skuMag").type("20");
+  cy.get("#widthMag").click().type("45");
   cy.get("#rimMag").click().type("17");
 
   cy.get("#btnnextMag").click();
@@ -43,9 +43,9 @@ const Mag1 = () => {
 // รายละเอียดราคา
 // เพิ่มสินค้าตัวเดิมยิดในคลังจะต้องเพิ่ม
 const Mag2 = () => {
-  cy.get("#amountMag").clear().type("5");
-  cy.get("#salesPriceMag").clear().type("30");
-  cy.get("#promotionMag").clear().type("20");
+  cy.get("#amountMag").clear().type("50");
+  cy.get("#salesPriceMag").clear().type("300");
+  cy.get("#promotionMag").clear().type("205");
 
   cy.get("#btnsaveInventorymag").click();
 };

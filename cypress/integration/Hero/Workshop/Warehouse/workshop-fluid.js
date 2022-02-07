@@ -26,8 +26,12 @@ const liquid = () => {
     taxliquid2(getRandomNumberliquid(0, 10));
     taxliquid3(getRandomNumberliquid(0, 10));
     taxliquid4(getRandomNumberliquid(0, 10));
+    cy.get(':nth-child(6) > .el-select > .el-input > .el-input__inner')
+        .click().type("AT").type("{downarrow}{downarrow}{enter}")
+    cy.get('#liquid-oilnumber').click().type("1")
+    cy.get(':nth-child(8) > .el-select > .el-input > .el-input__inner').click().type("A")
 
-    cy.get('#LIQUID > .col-xl-12 > .col-12 > :nth-child(3) > :nth-child(2) > #btnNextPart').click()
+    cy.get('.row.mt-3 > :nth-child(2) > #btnNextPart').click({ force: true })
 };
 
 const getRandomNumberliquid = (min, max) => {
@@ -47,13 +51,13 @@ const taxliquid3 = (textNo) => {
     cy.get(':nth-child(4) > .mt-2 > #oeNo').type("ของเหลว").type(textNo);
 };
 const taxliquid4 = (textNo) => {
-    cy.get('.form-full > .el-textarea > #itemDescription').type("ของเหลว").type(textNo);
+    cy.get('#liquid-fuel').type("ของเหลว").type(textNo);
 };
 
 // รายละเอียดราคา
 const liquid1 = () => {
-
-    cy.get('#liquid-count').clear().type("50");
+    cy.get(':nth-child(1) > .mt-2 > #liquid-count').clear().type("50");
+    cy.get(':nth-child(2) > .mt-2 > #liquid-count').type("1")
     cy.get('#liquid-unit').type("อัน").type("{downarrow}{downarrow}{enter}")
     cy.get('#liquid-price').clear().type("100");
     cy.get('#LIQUID > .col-xl-12 > .col-12 > :nth-child(3) > :nth-child(2) > #btnsaveInventoryPart').click()
@@ -66,7 +70,7 @@ const confimeliquid = () => {
 };
 
 const check = () => {
-    cy.get('#selProductname').click({ force: true }).type("ของเหลว",{ force: true }).type("{downarrow}{downarrow}{enter}",{ force: true })
+    cy.get('#selProductname').click({ force: true }).type("ของเหลว", { force: true }).type("{downarrow}{downarrow}{enter}", { force: true })
     cy.get('.btn-search').click({ force: true })
 
     cy.get('#inventorys-0 > :nth-child(1)').contains("ของเหลว")

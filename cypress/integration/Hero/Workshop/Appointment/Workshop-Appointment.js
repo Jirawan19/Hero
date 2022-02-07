@@ -93,7 +93,7 @@ const AddAppointment = () => {
 
   cy.get("#car-id").click().type("9กณ").wait(2000).type("{downarrow}{enter}");
   cy.get("#date-1").click();
-  cy.get(":nth-child(4) > .today > div").click();
+  cy.get(':nth-child(7) > :nth-child(3) > div').click();
   // cy.get('.el-date-table > tbody > :nth-child(3) > :nth-child(3) > div')
   //     .click()
   cy.get("#time")

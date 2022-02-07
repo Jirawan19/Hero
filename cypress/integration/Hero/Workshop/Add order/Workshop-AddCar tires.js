@@ -2,7 +2,7 @@
 
 context("Warehouse", () => {
   it("Car ties", () => {
-    cy.login("empGrip01", "password");
+    cy.login("1919", "1919");
     addCartiees();
     addCartiees1();
     addconfimeCartiees();
@@ -16,7 +16,7 @@ context("Warehouse", () => {
 
 // รายละเอียดสินค้า
 const addCartiees = () => {
-  cy.get("#nav-item-7").click({ force: true });
+  cy.get("#nav-item-6").click({ force: true });
   cy.get("#tab-inventory").click({ force: true });
   cy.get("#btn-addInventory").click({ force: true });
   cy.get("#tab-TIRE").click({ force: true });
@@ -131,13 +131,13 @@ const Addorder = () => {
   cy.wait(500);
   cy.get("#txtSelectSeries")
     .click()
-    .type("45")
+    .type("10.5")
     .type("{downarrow}{downarrow}{enter}", { force: true });
 
   cy.wait(500);
   cy.get("#txtSelectRim")
     .click()
-    .type("15")
+    .type("12")
     .type("{downarrow}{downarrow}{enter}", { force: true });
 
   cy.wait(500);

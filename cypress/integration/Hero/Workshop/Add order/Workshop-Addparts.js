@@ -2,9 +2,9 @@
 
 context("Warehouse", () => {
   it("Parts", () => {
-    cy.login("empGrip01", "password");
-    // addParts();
-    // supplier();
+    cy.login("1919", "1919");
+    addParts();
+    supplier();
 
     Addorderparts();
     checkorderparts();
@@ -12,7 +12,7 @@ context("Warehouse", () => {
 });
 // กรอกรายละเอียดสินค้า
 const addParts = () => {
-  cy.get("#nav-item-7").click();
+  cy.get("#nav-item-6").click();
   cy.get("#tab-inventory").click({ force: true });
   cy.get("#btn-addInventory").click({ force: true });
   cy.get("#tab-PART").click({ force: true });
