@@ -5,11 +5,11 @@ context("Name lish book", () => {
     cy.visit("https://herodemo.autopair.co/");
   });
   it("Add Employee", () => {
-    cy.login("1919", "1919");
+    cy.login("mumu", "1234");
     AddTechincian();
     AddTechincian1();
 
-    checkTechincian();
+    // checkTechincian();
   });
 });
 

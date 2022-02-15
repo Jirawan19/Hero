@@ -2,11 +2,11 @@
 
 context("Name lish book", () => {
   it("Add Employee", () => {
-    cy.login("1919", "1919");
+    cy.login("mumu", "1234");
     AddEmployee();
     AddEmployee1();
 
-    checkEmploye();
+    // checkEmploye();
   });
 });
 

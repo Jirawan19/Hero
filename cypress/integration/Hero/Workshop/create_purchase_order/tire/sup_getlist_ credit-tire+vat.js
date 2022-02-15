@@ -3,7 +3,7 @@
 context("supplier getLish tire+vat", () => {
     it("purchase_order_tire", () => {
         // cy.pause()
-        cy.login("1919", "1919");
+        cy.login("mumu", "1234");
         purchase_order()
         cy.logOut()
     })

@@ -3,14 +3,14 @@
 context("supplier getLish part+vat", () => {
     it("purchase_order_part", () => {
         // cy.pause()
-        cy.login("1919", "1919");
+        cy.login("mumu", "1234");
         purchase_order()
         cy.logOut()
     })
     it("supplier_getLish ", () => {
         // cy.pause()
         cy.loginSupplier("atp-member1", "atp16011986")
-        add_store()
+        // add_store()
         supplier_getLish()
         check_order()
         cy.logOut()
@@ -64,7 +64,9 @@ const purchase_order = () => {
     cy.get('.swal2-confirm').click()
 
     // เช็ครายการ
-    cy.get(':nth-child(1) > :nth-child(1) > a > .primary-blue').click({ force: true })
+    cy.get('tbody > :nth-child(1) > :nth-child(1) > .primary-blue').click({ force: true })
+    cy.visit("https://herodemo.autopair.co/workshop/purchaseorder/POATP-0222-0010")
+
     cy.get('.status-border').contains("รอยืนยันรายการ")
 
     cy.get('.table-order-wrapper.d-none > .table > tbody > :nth-child(1) > .text-left > :nth-child(4)')
@@ -92,7 +94,7 @@ const supplier_getLish = () => {
         .wait(1000).type("{downarrow}{enter}", { force: true })
 
     // กดแก้ไข กรอกรายละเอียด
-    cy.get('.my-3 > .btn').click({ force: true })
+    cy.get('.edit-wrapper > .btn').click({ force: true })
 
     cy.get('.d-xl-block > .table > tbody > :nth-child(1) > .text-left > :nth-child(4)').contains("ก้ามเบรค หลัง")
     cy.get(':nth-child(1) > [style="width: 10%;"] > .el-select > .el-input > .el-input__inner')
@@ -113,7 +115,9 @@ const supplier_getLish = () => {
     cy.get('.swal2-confirm').click()
     cy.wait(500)
     cy.get('.swal2-confirm').click()
-
+    cy.get('#saveConfirm').click({ force: true })
+    cy.get('#saveConfirm').click({ force: true })
+    cy.get('.swal2-confirm').click({ force: true })
     // สถานะรอรับสินค้า
     cy.get('.status-border').contains("รอรับสินค้า")
     cy.get(':nth-child(1) > .text-right').contains("2,070.00")

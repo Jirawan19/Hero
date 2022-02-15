@@ -2,7 +2,7 @@
 
 context("Warehouse", () => {
   it("Parts", () => {
-    cy.login("1919", "1919");
+    cy.login("mumu", "1234");
     Parts();
     Parts1();
     confimeParts();
@@ -50,8 +50,7 @@ const taxParts3 = (textNo) => {
 const Parts1 = () => {
   cy.get("#amountRemainStock").clear().type("10");
   cy.get("#unit").click().type("{downarrow}{enter}");
-  cy.get(":nth-child(3) > .mt-2 > #salesPricePart").clear().type("200");
-  cy.get(":nth-child(4) > .mt-2 > #salesPricePart").clear().type("150");
+  cy.get('.form-row.mt-2 > .form-group > .mt-2 > #salesPricePart').clear().type("200");
   cy.get("#btnsaveInventoryPart").click();
 };
 

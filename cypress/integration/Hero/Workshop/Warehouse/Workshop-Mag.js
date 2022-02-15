@@ -5,7 +5,7 @@ context("Warehouse", () => {
     cy.visit("https://herodemo.autopair.co/");
   });
   it("Mag", () => {
-    cy.login("1919", "1919");
+    cy.login("mumu", "1234");
     Mag();
     Mag1();
     Mag2();
@@ -25,17 +25,17 @@ const Mag = () => {
 // กรอกรายละเอียดสินค้า
 const Mag1 = () => {
   cy.get("#ItemCodeMag").type("เพิ่มแม็ก");
-  cy.get("#brandMag").type("เพิ่มแม็ก 19");
+  cy.get("#brandMag").type("เพิ่มแม็ก 90");
   cy.get("#cb-0").type("60");
   cy.get("#pcdhod-0").type("50");
   cy.get("#pcdsize-0").type("50");
-  cy.get("#pcddec-0").type("5-");
+  cy.get("#pcddec-0").type("50");
   cy.get("#itemoffsetMag").type("500");
   cy.get("#itemcolorMag").type("white");
   cy.get("#model_mag").type("50");
-  cy.get("#skuMag").type("20");
+  cy.get("#skuMag").type("677");
   cy.get("#widthMag").click().type("45");
-  cy.get("#rimMag").click().type("17");
+  cy.get("#rimMag").click().type("10");
 
   cy.get("#btnnextMag").click();
 };
@@ -45,7 +45,6 @@ const Mag1 = () => {
 const Mag2 = () => {
   cy.get("#amountMag").clear().type("50");
   cy.get("#salesPriceMag").clear().type("300");
-  cy.get("#promotionMag").clear().type("205");
 
   cy.get("#btnsaveInventorymag").click();
 };

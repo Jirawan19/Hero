@@ -5,7 +5,7 @@ context("Warehouse", () => {
     cy.visit("https://herodemo.autopair.co/");
   });
   it("Car tiees", () => {
-    cy.login("1919", "1919");
+    cy.login("mumu", "1234");
     Cartiees();
     Cartiees1();
     confimeCartiees();
@@ -57,11 +57,10 @@ const taxCartiees4 = (textNo) => {
 // รายละเอียดราคา
 const Cartiees1 = () => {
   cy.get("#salesPriceTire").clear().type("100");
-  cy.get("#promotionTire").clear().type("50");
 
-  cy.get("#tiredot-0").clear().type("0319");
+  cy.get('#tiredot-0').clear().type("0319");
 
-  cy.get("#tireamount-0").clear().type("50");
+  cy.get('#tireamount-0').clear().type("50");
 
   cy.get("#saveInventoryTire").click();
 };
