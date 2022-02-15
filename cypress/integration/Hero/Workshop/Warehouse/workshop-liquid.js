@@ -1,10 +1,7 @@
 /// <reference types="cypress" />
 
 context("Warehouse", () => {
-    beforeEach(() => {
-        cy.visit("https://herodemo.autopair.co/");
-    });
-    it("Car tiees", () => {
+    it("liquid", () => {
         cy.login("mumu", "1234");
         liquid();
         liquid1();
@@ -58,8 +55,8 @@ const taxliquid4 = (textNo) => {
 
 // รายละเอียดราคา
 const liquid1 = () => {
-    cy.get(':nth-child(1) > .mt-2 > #liquid-count').clear().type("500");
-    cy.get(':nth-child(2) > .mt-2 > #liquid-count').type("1")
+    cy.get(':nth-child(1) > #liquid-count').clear().type("500");
+    cy.get('.mt-2 > #liquid-count').type("1")
     cy.get('#liquid-unit').type("อัน").type("{downarrow}{downarrow}{enter}")
     cy.get('#liquid-price').clear().type("1000");
     cy.get('#LIQUID > .col-xl-12 > .col-12 > :nth-child(3) > :nth-child(2) > #btnsaveInventoryPart').click()

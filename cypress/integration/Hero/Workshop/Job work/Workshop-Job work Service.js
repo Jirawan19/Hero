@@ -2,10 +2,7 @@
 
 /// <reference types="cypress" />
 
-
-
 context("Workshop Add Repair work", () => {
-
     it("Add job work", () => {
         cy.login("empGrip01", "password")
         // AddCustomerJob()
