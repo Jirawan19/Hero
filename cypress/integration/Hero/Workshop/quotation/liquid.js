@@ -1,15 +1,17 @@
 /// <reference types="cypress" />
 
-context("job fiuid", () => {
-    it("job fiuid", () => {
+context("quotation fiuid", () => {
+    it("quotation fiuid", () => {
         cy.pause()
         cy.login("mumu", "1234")
         // AddCustomer()
         // AddTechincian()
         // liquid()
 
-        job()
+        quotation()
         start_job()
+        start_job1()
+        check_job()
     })
 })
 const AddCustomer = () => {
@@ -157,13 +159,13 @@ const taxAddEmployee3 = (textNo) => {
     cy.get("#state-telEmp").type(textNo);
 };
 
-const job = () => {
+const quotation = () => {
     cy.get('#nav-item-2').click()
-    cy.get('#btn-addRepairJob').click({ force: true })
+    cy.get('#tab-quotation').click({ force: true })
 
-    cy.wait(3000)
+    cy.wait(2000)
+    cy.get('#btn-addRepairJob').click({ force: true })
     cy.get('#selSelectCar').click({ force: true }).type("9กณ").type("{downarrow}{enter}")
-    cy.get('#selSelectmechanicId').type("ช่างซ่อม", { force: true }).type("{downarrow}{enter}", { force: true })
 
     // เพิ่มอะไหล่ ของเหลว
     cy.get('.col-xl-3 > .btn').click({ force: true })
@@ -184,15 +186,48 @@ const job = () => {
     cy.get('#totalPriceFinal').contains("941.60")
     cy.get('#paymentPrice').contains("941.60")
 
-    // เปิดงานซ่อม
-    cy.get('#btncreateWalkInWorkshopJob').click()
+    // บันทึกใบเสนอราคา
+    cy.get('#btncreateQuotation').click()
     cy.get('.swal2-confirm').click()
 }
-// เริ่มซ่อมบำรุง
+// เปิดงานซ่อมบำรุงจากใบเสนอราคา
 const start_job = () => {
-    cy.wait(5000)
-    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00264-0222-0019")
-    cy.wait(5000)
+    cy.wait(1000)
+    cy.visit("https://herodemo.autopair.co/workshop/quotation/info/43")
+    cy.wait(1000)
+
+    // สถานะรอลูกค้ายืนยัน
+    cy.get('.status-border').contains("รอลูกค้ายืนยัน")
+    cy.get('#podata-0').contains("น้ำมันเครื่อง")
+    cy.get('#totalpricetire-0').contains("900.00")
+    cy.get('#afterDiscount').contains("880.00")
+    cy.get('#vatPrice').contains("61.60")
+    cy.get('#paymentPrice').contains("941.60")
+
+    cy.get('#btngotoCreate').click()
+
+    // ใส่ข้อมูลพนักงานซ่อม
+    cy.get('#selSelectmechanicId').click({ force: true }).type("ช่างซ่อม", { force: true }).type("{downarrow}{downarrow}{enter}", { force: true })
+
+    cy.get('#dataliquid-0').contains("น้ำมันเครื่อง")
+    cy.get('#partproductlatestSalePricetotal-0').contains("900.00")
+    cy.get('#afterDiscount').contains("880.00")
+    cy.get('#vatPrice').contains("61.60")
+    cy.get('#paymentPrice').contains("941.60")
+
+    // เปิดงานซ่อม
+    cy.get('#btncreateWalkInWorkshopJob').click({ force: true })
+    cy.get('.swal2-confirm').click()
+
+    // เช็คเปิดงานซ่อมจากใบเสนอราคา
+    // cy.get('#tab-quotation').click()
+    // cy.get('#jobrepair-0 > :nth-child(2)').contains("เพิ่มลูกค้า")
+
+}
+const start_job1 = () => {
+    cy.wait(1000);
+    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00264-0222-0018")
+    cy.wait(1000);
 
     // สถานะรอซ่อมบำรุง
     cy.get('.status-border').contains("รอซ่อมบำรุง")
@@ -204,7 +239,7 @@ const start_job = () => {
 
     cy.get('#btnrecheckConfirmstart').click()
     cy.get('.swal2-confirm').click()
-    cy.wait(500)
+    cy.wait(500);
     cy.get('.swal2-confirm').click()
 
     // สถานะกำลังซ่อมบำรุง
@@ -221,16 +256,22 @@ const start_job = () => {
     cy.wait(2000)
     cy.get('.swal2-confirm').click()
 
-     // สถานะซ่อมบำรุงเสร็จสิ้น
-     cy.get('.status-border').contains("รายการเสร็จสิ้น")
-     cy.get('#podata-0').contains("น้ำมันเครื่อง")
-     cy.get('#totalpoprice-0').contains("900.00")
-     cy.get('#afterDiscount').contains("880.00")
-     cy.get('#vatPrice').contains("61.60")
-     cy.get('#paymentPrice').contains("941.60")
+    // สถานะซ่อมบำรุงเสร็จสิ้น
+    cy.get('.status-border').contains("รายการเสร็จสิ้น")
+    cy.get('#podata-0').contains("น้ำมันเครื่อง")
+    cy.get('#totalpoprice-0').contains("900.00")
+    cy.get('#afterDiscount').contains("880.00")
+    cy.get('#vatPrice').contains("61.60")
+    cy.get('#paymentPrice').contains("941.60")
 
-     cy.get('#btnBack').click()
+    cy.get('#btnBack').click()
 }
+const check_job = () => {
+    cy.get('#jobrepair-0 > :nth-child(2)').contains("เพิ่มลูกค้า")
+    cy.get('#jobrepair-0 > :nth-child(6)').contains("941.60")
+    cy.get('#jobrepair-0 > [style="width: 12rem;"] > .status-border').contains("รายการเสร็จสิ้น")
+}
+// เพิ่มอะไหล่ของเหลว
 const liquid = () => {
     cy.get("#nav-item-6").click({ force: true });
     cy.get("#tab-inventory").click({ force: true });
@@ -238,17 +279,9 @@ const liquid = () => {
     cy.get("#btn-addInventory").click({ force: true });
     cy.get('#tab-LIQUID').click({ force: true });
 
-    // taxliquid(getRandomNumberliquid(0, 10));
     cy.get('#lidquid-name').click().type("น้ำมันเครื่อง").type("{downarrow}{downarrow}{enter}")
     taxliquid1(getRandomNumberliquid(0, 10));
     taxliquid2(getRandomNumberliquid(0, 10));
-    // taxliquid3(getRandomNumberliquid(0, 10));
-    // taxliquid4(getRandomNumberliquid(0, 10));
-    // cy.get(':nth-child(6) > .el-select > .el-input > .el-input__inner')
-    //     .click().type("AT").type("{downarrow}{downarrow}{enter}")
-    // cy.get('#liquid-oilnumber').click().type("9")
-    // cy.get(':nth-child(8) > .el-select > .el-input > .el-input__inner')
-    //     .click().type("SYNTHETIC").type("{downarrow}{downarrow}{enter}")
 
     cy.get('.row.mt-3 > :nth-child(2) > #btnNextPart').click({ force: true })
 
@@ -265,9 +298,6 @@ const getRandomNumberliquid = (min, max) => {
     0, 0;
     return Math.random() * (max - min) + min;
 };
-// const taxliquid = (textNo) => {
-//     cy.get('#lidquid-name').type("ของเหลว").type(textNo);
-// };
 const taxliquid1 = (textNo) => {
     cy.get('#liquid-brand').type("ของเหลว").type(textNo);
 };

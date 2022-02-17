@@ -22,13 +22,6 @@ const liquid = () => {
     cy.get('#lidquid-name').click().type("น้ำมันเครื่อง").type("{downarrow}{downarrow}{enter}")
     taxliquid1(getRandomNumberliquid(0, 10));
     taxliquid2(getRandomNumberliquid(0, 10));
-    // taxliquid3(getRandomNumberliquid(0, 10));
-    // taxliquid4(getRandomNumberliquid(0, 10));
-    // cy.get(':nth-child(6) > .el-select > .el-input > .el-input__inner')
-    //     .click().type("AT").type("{downarrow}{downarrow}{enter}")
-    // cy.get('#liquid-oilnumber').click().type("9")
-    // cy.get(':nth-child(8) > .el-select > .el-input > .el-input__inner')
-    //     .click().type("SYNTHETIC").type("{downarrow}{downarrow}{enter}")
 
     cy.get('.row.mt-3 > :nth-child(2) > #btnNextPart').click({ force: true })
 };
