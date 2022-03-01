@@ -6,7 +6,7 @@ context("job_groupA", () => {
         cy.login("test2.2329436448013107", "1234");
 
         job_groupA()
-        start_job()
+        // start_job()
     })
 })
 const job_groupA = () => {
@@ -66,23 +66,35 @@ const job_groupA = () => {
     cy.get('#mag-0 > :nth-child(6) > .row > .mt-3 > .form-control')
         .click({ force: true }).clear({ force: true }).type("10", { force: true })
 
-    // เช็คคำนวณ
+    // เช็คคำนวณไม่มีส่วนลด
     cy.get('#afterDiscount').contains("760.00")
     cy.get('#vatPrice').contains("53.20")
     cy.get('#paymentPrice').contains("813.20")
 
-    // เปิดงานซ่อม
-    cy.get('#btncreateWalkInWorkshopJob').click()
-    cy.get('.swal2-confirm').click()
+    // // ส่วนลดท้ายบิล(ถ้ามี)
+    // cy.get('#discount').click({ force: true }).clear({ force: true }).type("10")
+    // cy.get(':nth-child(3) > .th-retail-style').click({ force: true })
 
-    // เช็ครายการงานซ่อม
-    cy.get('#jobrepair-0 > :nth-child(2)').should("contain.text", "ลูกค้ากลุ่มราคา")
-    cy.get('#jobrepair-0 > :nth-child(6)').should("contain.text", "813.20")
-    cy.get('[style="width: 12rem;"] > .status-border').should("contain.text", "รอซ่อมบำรุง")
+    // // เช็คคำนวณส่วนลดท้ายบิล(ถ้ามี)
+    // cy.get('#afterDiscount').contains("750.00")
+    // cy.get('#vatPrice').contains("52.50")
+    // cy.get('#paymentPrice').contains("802.50")
+
+    check()
+
+    // // เปิดงานซ่อม
+    // cy.get('#btncreateWalkInWorkshopJob').click()
+    // cy.get('.swal2-confirm').click()
+
+    // // เช็ครายการงานซ่อม
+    // cy.get('#jobrepair-0 > :nth-child(2)').should("contain.text", "ลูกค้ากลุ่มราคา")
+    // cy.get('#jobrepair-0 > :nth-child(6)').should("contain.text", "813.20")
+    // cy.get('[style="width: 12rem;"] > .status-border').should("contain.text", "รอซ่อมบำรุง")
 }
+
 const start_job = () => {
     cy.wait(5000)
-    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0003")
+    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0018")
     cy.wait(5000)
 
     // รอซ่อมบำรุง
@@ -165,10 +177,90 @@ const start_job = () => {
     cy.get('#vatPrice').contains("53.20")
     cy.get('#paymentPrice').contains("813.20")
 
+    // เช็ครายการคำนวณ
+    check()
+
     cy.get('#btnBack').click()
 
     // เช็ครายการงานซ่อม
     cy.get('#jobrepair-0 > :nth-child(2)').should("contain.text", "ลูกค้ากลุ่มราคา")
     cy.get('#jobrepair-0 > :nth-child(6)').should("contain.text", "813.20")
     cy.get('[style="width: 12rem;"] > .status-border').should("contain.text", "รายการเสร็จสิ้น")
+}
+
+// const check = () => {
+//     const job = [
+//         {
+//             price: 200,
+//             price1: 200,
+//             price2: 180,
+//             price3: 180,
+//             tex: 1.07
+//         }
+//     ]
+//     let Price = 0
+//     job.map(job => {
+//         Price += job.price + job.price1 + job.price2 + job.price3
+//     })
+//     let paymentPrice = 0
+//     job.map(job => {
+//         paymentPrice += (job.price + job.price1 + job.price2 + job.price3) * job.tex
+//     })
+//     cy.get('#afterDiscount').contains(Price)
+//     cy.get('#paymentPrice').contains(paymentPrice)
+// }
+
+
+const check = () => {
+    const job = [
+        {
+            price: 200,
+            qty: 1,
+            discount: 0,
+        },
+        {
+            price: 200,
+            qty: 1,
+            discount: 0,
+        },
+        {
+            price: 200,
+            qty: 1,
+            discount: 20,
+        },
+        {
+            price: 200,
+            qty: 1,
+            discount: 20,
+        }
+    ]
+    let Price = 0
+    job.map(job => {
+        Price += job.price * job.qty
+    })
+    let discount = 0
+    job.map(job => {
+        discount += job.price - job.discount
+    })
+    // // ส่วนลดท้ายบิล(ถ้ามี)
+    // let discount_job = 0
+    // job.map(job => {
+    //     discount_job += 
+    // })
+
+    let paymentPrice = 0
+    job.map(job => {
+        paymentPrice += (job.price - job.discount) * 1.07
+    })
+
+    cy.log(Price)
+    cy.log(discount)
+    // cy.log(discount_job)
+    cy.log(paymentPrice)
+    
+    cy.get('#afterDiscount').contains(discount)
+    cy.get('#paymentPrice').contains(paymentPrice)
+
+    // cy.get('#txtNote').contains(Price)
+    // cy.get('#paymentPrice').contains(paymentPrice)
 }
