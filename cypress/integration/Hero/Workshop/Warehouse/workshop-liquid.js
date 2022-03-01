@@ -2,7 +2,7 @@
 
 context("Warehouse", () => {
     it("liquid", () => {
-        cy.login("mumu", "1234");
+        cy.login("007", "1234");
         liquid();
         liquid1();
         confimeliquid();

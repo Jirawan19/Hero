@@ -5,7 +5,7 @@ context("Warehouse", () => {
     cy.visit("https://herodemo.autopair.co/");
   });
   it("Mag", () => {
-    cy.login("mumu", "1234");
+    cy.login("007", "1234");
     Mag();
     Mag1();
     Mag2();

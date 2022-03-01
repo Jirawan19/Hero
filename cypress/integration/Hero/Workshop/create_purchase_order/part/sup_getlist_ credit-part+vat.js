@@ -3,14 +3,14 @@
 context("supplier getLish part+vat", () => {
     it("purchase_order_part", () => {
         // cy.pause()
-        cy.login("mumu", "1234");
+        cy.login("007", "1234");
         purchase_order()
         cy.logOut()
     })
     it("supplier_getLish ", () => {
         // cy.pause()
         cy.loginSupplier("atp-member1", "atp16011986")
-        // add_store()
+        add_store()
         supplier_getLish()
         check_order()
         cy.logOut()
@@ -65,7 +65,7 @@ const purchase_order = () => {
 
     // เช็ครายการ
     cy.get('tbody > :nth-child(1) > :nth-child(1) > .primary-blue').click({ force: true })
-    cy.visit("https://herodemo.autopair.co/workshop/purchaseorder/POATP-0222-0010")
+    cy.visit("https://herodemo.autopair.co/workshop/purchaseorder/POATP-0222-0002")
 
     cy.get('.status-border').contains("รอยืนยันรายการ")
 

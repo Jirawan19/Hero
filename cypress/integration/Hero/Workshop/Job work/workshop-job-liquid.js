@@ -3,7 +3,7 @@
 context("job fiuid", () => {
     it("job fiuid", () => {
         cy.pause()
-        cy.login("mumu", "1234")
+        cy.login("007", "1234")
         // AddCustomer()
         // AddTechincian()
         // liquid()
@@ -169,9 +169,10 @@ const job = () => {
     cy.get('.col-xl-3 > .btn').click({ force: true })
     cy.get('#tab-LIQUID').click()
     cy.wait(500)
-    cy.get('#addLiquidPo-12756').click()
-    cy.get('.el-notification__closeBtn').click()
-    cy.get('.close').click()
+    // cy.get('#addLiquidPo-12756').click()
+    cy.pause()
+    // cy.get('.el-notification__closeBtn').click()
+    // cy.get('.close').click()
 
     // เช็ครายละเอียด
     cy.get('#dataliquid-0').contains("น้ำมันเครื่อง")
@@ -191,7 +192,7 @@ const job = () => {
 // เริ่มซ่อมบำรุง
 const start_job = () => {
     cy.wait(5000)
-    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00264-0222-0019")
+    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00289-0222-0007")
     cy.wait(5000)
 
     // สถานะรอซ่อมบำรุง

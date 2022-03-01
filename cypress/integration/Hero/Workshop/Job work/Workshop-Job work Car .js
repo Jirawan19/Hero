@@ -5,7 +5,7 @@
 context("Workshop Add Repair work", () => {
   // เปิดงานซ่อม
   it("Add job work", () => {
-    cy.login("empGrip01", "password");
+    cy.login("007", "1234");
     // AddCustomerJob();
     // AddTechincianOrWorkjob();
     // addCartiees();
@@ -28,7 +28,7 @@ context("Workshop Add Repair work", () => {
 const JobWork = () => {
   cy.get("#nav-item-2").click();
   cy.get("#btn-addRepairJob");
-  cy.contains("เพิ่มงานซ่อม").click({ force: true });
+  cy.contains("งานซ่อม").click({ force: true });
 
   // เลือกลูกค้าและพนักงานซ่อม
 
@@ -39,12 +39,12 @@ const JobWork = () => {
 
   cy.get("#selSelectmechanicId")
     .click({ force: true })
-    .type("เพิ่มช่างซ่อม")
+    .type("ช่างซ่อม",{ force: true })
     .type("{downarrow}{enter}");
 
   cy.get("#selSelectSales")
     .click({ force: true })
-    .type("เพิ่มพนักงาน")
+    .type("พนักงาน",{ force: true })
     .type("{downarrow}{enter}");
 
   cy.get("#btnAddProduct").click({ force: true });

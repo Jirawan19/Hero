@@ -4,7 +4,7 @@
 
 context("Service", () => {
   it("Add Appointment", () => {
-    cy.login("mumu", "1234");
+    cy.login("007", "1234");
     // addcustomer00();
     AddAppointment();
 
