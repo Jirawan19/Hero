@@ -3,13 +3,13 @@
 context("customer", () => {
     it("group A", () => {
         cy.pause()
-        cy.login("nunu", "1234");
+        cy.login("test2.2329436448013107", "1234");
 
         // เพิ่มลูกค้ากลุ่มราคา
         customer_groupA()
 
         // เพิ่มช่างซ่อม
-        AddTechincian()
+        // AddTechincian()
     })
 })
 const customer_groupA = () => {
@@ -75,6 +75,9 @@ const customer_groupA = () => {
 
     cy.get(".swal2-confirm");
     cy.get(".swal2-confirm").click();
+
+    cy.get('#nav-item-6').click()
+    
 }
 const getRandomNumberAddCustomer = (min, max) => {
     0, 0;

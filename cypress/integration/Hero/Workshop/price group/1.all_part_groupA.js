@@ -3,7 +3,7 @@
 context("Warehouse", () => {
   it("group A", () => {
     cy.pause()
-    cy.login("nunu", "1234");
+    cy.login("test2.2329436448013107", "1234");
 
     // เพิ่มยาง
     cartiees();
