@@ -5,12 +5,12 @@ context("quotation_groupA", () => {
         cy.pause()
         cy.login("test2.2329436448013107", "1234")
         // สร้างใบเสนอราคากลุ่มราคาA
-        quotation_groupA()
-        check_quotation()
+        // quotation_groupA()
+        // check_quotation()
 
-        // เปิดงานซ่อมจากใบเสนอราคา
-        cy.pause()
-        start_job()
+        // // เปิดงานซ่อมจากใบเสนอราคา
+        // cy.pause()
+        // start_job()
 
         // เริ่มซ่อมบำรุง
         cy.pause()
@@ -85,6 +85,8 @@ const quotation_groupA = () => {
     cy.get('#vatPrice').should("contain.text", "53.20")
     cy.get('#paymentPrice').should("contain.text", "813.20")
 
+    check()
+
     // เปิดใบเสนอราคา
     cy.get('#btncreateQuotation').click()
     cy.get('.swal2-confirm').click()
@@ -96,7 +98,7 @@ const check_quotation = () => {
 }
 const start_job = () => {
     cy.wait(3000)
-    cy.visit("https://herodemo.autopair.co/workshop/quotation/info/38")
+    cy.visit("https://herodemo.autopair.co/workshop/quotation/info/43")
 
     cy.get('.status-border').should("contain.text", "รอลูกค้ายืนยัน")
 
@@ -117,6 +119,8 @@ const start_job = () => {
     cy.get('#afterDiscount').should("contain.text", "760.00")
     cy.get('#vatPrice').should("contain.text", "53.20")
     cy.get('#paymentPrice').should("contain.text", "813.20")
+
+    check()
 
     // เปิดงานซ่อมจากใบเสนอราคา
     cy.get('#btngotoCreate').click()
@@ -146,7 +150,7 @@ const start_job = () => {
 }
 const job_finish = () => {
     cy.wait(3000)
-    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0008")
+    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0021")
     cy.wait(2000)
 
     // รอซ่อมบำรุง
@@ -229,11 +233,67 @@ const job_finish = () => {
     cy.get('#vatPrice').contains("53.20")
     cy.get('#paymentPrice').contains("813.20")
 
+    check()
+
     cy.get('#btnBack').click()
 
     // เช็ครายการงานซ่อม
     cy.get('#jobrepair-0 > :nth-child(2)').should("contain.text", "ลูกค้ากลุ่มราคา")
     cy.get('#jobrepair-0 > :nth-child(6)').should("contain.text", "813.20")
     cy.get('[style="width: 12rem;"] > .status-border').should("contain.text", "รายการเสร็จสิ้น")
+}
+
+const check = () => {
+    const job = [
+        {
+            price: 200,
+            qty: 1,
+            discount: 0,
+        },
+        {
+            price: 200,
+            qty: 1,
+            discount: 0,
+        },
+        {
+            price: 200,
+            qty: 1,
+            discount: 20,
+        },
+        {
+            price: 200,
+            qty: 1,
+            discount: 20,
+        }
+    ]
+
+    // ราคาทั้งหมด
+    let Price = 0
+    job.map(job => {
+        Price += job.price * job.qty
+    })
+    // ส่วนลดรายชิ้น
+    let discount = 0
+    job.map(job => {
+        discount += job.price - job.discount
+    })
+    // // ส่วนลดท้ายบิล ถ้ามี
+    // let job_discount = 0
+    // job.map(job => {
+    //     job_discount += (job.price - job.discount) * (100 - 10) / 100
+    // })
+    // ราคาบวก vat ท้ายบิล
+    let paymentPrice = 0
+    job.map(job => {
+        paymentPrice += (job.price - job.discount) * 1.07
+    })
+
+    cy.log(Price)
+    cy.log(discount)
+    // cy.log(job_discount)
+    cy.log(paymentPrice)
+
+    cy.get('#afterDiscount').contains(discount)
+    cy.get('#paymentPrice').contains(paymentPrice)
 
 }
