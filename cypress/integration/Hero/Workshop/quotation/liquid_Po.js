@@ -1,18 +1,21 @@
 /// <reference types="cypress" />
 
-context("quotation fiuid", () => {
+context("fiuid_po", () => {
     it("quotation fiuid", () => {
         cy.pause()
         cy.login("test2.2329436448013107", "1234");
-        // AddCustomer()
-        // AddTechincian()
         // liquid()
         quotation()
+    })
+    it("start_job", () => {
         cy.pause()
+        cy.login("test2.2329436448013107", "1234");
         start_job()
+    })
+    it("start_job1", () => {
         cy.pause()
+        cy.login("test2.2329436448013107", "1234");
         start_job1()
-        cy.pause()
         check_job()
     })
 })
@@ -195,7 +198,7 @@ const quotation = () => {
 // เปิดงานซ่อมบำรุงจากใบเสนอราคา
 const start_job = () => {
     cy.wait(1000)
-    cy.visit("https://herodemo.autopair.co/workshop/quotation/info/57")
+    cy.visit("https://herodemo.autopair.co/workshop/quotation/info/75")
     cy.wait(1000)
 
     // สถานะรอลูกค้ายืนยัน
@@ -228,7 +231,7 @@ const start_job = () => {
 }
 const start_job1 = () => {
     cy.wait(1000);
-    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0031")
+    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0041")
     cy.wait(1000);
 
     // สถานะรอซ่อมบำรุง

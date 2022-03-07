@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
 
-context("tries_po", () => {
-    it("quotation tries", () => {
+context("part_po", () => {
+    it("quotation part", () => {
         cy.pause()
         cy.login("test2.2329436448013107", "1234");
-        // add_tries()
+        // add_part()
         quotation()
     })
     it("start_job", () => {
@@ -19,51 +19,45 @@ context("tries_po", () => {
         check_job()
     })
 })
-const add_tries = () => {
+const add_part = () => {
     cy.get("#nav-item-6").click({ force: true });
     cy.get("#tab-inventory").click({ force: true });
-    cy.wait(2000);
     cy.get("#btn-addInventory").click({ force: true });
-    cy.get("#tab-TIRE").click({ force: true });
+    cy.get("#tab-PART").click({ force: true });
 
-    taxCartiees(getRandomNumberCartiees(0, 10));
-    taxCartiees1(getRandomNumberCartiees(0, 10));
-    taxCartiees2(getRandomNumberCartiees(0, 10));
-    taxCartiees3(getRandomNumberCartiees(0, 10));
-    taxCartiees4(getRandomNumberCartiees(0, 10));
+    taxParts(getRandomNumberParts(1, 10));
+    cy.get("#fitmentDetail").click().type("{downarrow}{enter}");
+    taxParts1(getRandomNumberParts(1, 10));
+    taxParts2(getRandomNumberParts(1, 10));
+    taxParts3(getRandomNumberParts(1, 10));
+    cy.get("#itemDescription").type("test");
 
-    cy.get("#txtSelectWidth").click().type("{downarrow}{downarrow}{enter}");
-    cy.get("#txtSelectSeries").click().type("10.5").type("{downarrow}{downarrow}{enter}");
-    cy.get("#txtSelectRim").click().type("{downarrow}{downarrow}{enter}");
+    cy.get("#btnNextPart").click();
 
-    cy.get("#btnnextTirestep").click();
-
-    cy.get("#salesPriceTire").clear().type("100");
-    cy.get('#tiredot-0').clear().type("0319");
-    cy.get('#tireamount-0').clear().type("50");
-    cy.get("#saveInventoryTire").click();
+    cy.get("#amountRemainStock").clear().type("100");
+    cy.get("#unit").click().type("{downarrow}{enter}");
+    cy.get('.form-row.mt-2 > .form-group > .mt-2 > #salesPricePart').clear().type("200");
+    cy.get("#btnsaveInventoryPart").click();
 
     cy.get(".swal2-confirm").click();
-    cy.get("#tab-TIRE").click({ force: true });
+    cy.get("#tab-PART").click({ force: true });
 }
-const getRandomNumberCartiees = (min, max) => {
+const getRandomNumberParts = (min, max) => {
     0, 0;
     return Math.random() * (max - min) + min;
 };
-const taxCartiees = (textNo) => {
-    cy.get("#ItemCodeTire").type("เพิ่มยาง").type(textNo);
+
+const taxParts = (textNo) => {
+    cy.get("#itemName").type("เพิ่มอะไหล่").type(textNo);
 };
-const taxCartiees1 = (textNo) => {
-    cy.get("#brandTire").type("เพิ่มยาง").type(textNo);
+const taxParts1 = (textNo) => {
+    cy.get("#brand").type("เพิ่มอะไหล่").type(textNo);
 };
-const taxCartiees2 = (textNo) => {
-    cy.get("#itemtagTire").type("เพิ่มยาง").type(textNo);
+const taxParts2 = (textNo) => {
+    cy.get("#manufacturerNo").type("เพิ่มอะไหล่").type(textNo);
 };
-const taxCartiees3 = (textNo) => {
-    cy.get("#skuTire").type("เพิ่มยาง").type(textNo);
-};
-const taxCartiees4 = (textNo) => {
-    cy.get("#itemDescriptionTire").type("เพิ่มยาง").type(textNo);
+const taxParts3 = (textNo) => {
+    cy.get("#oeNo").type("เพิ่มอะไหล่").type(textNo);
 };
 const quotation = () => {
     cy.get('#nav-item-2').click()
@@ -71,28 +65,28 @@ const quotation = () => {
 
     cy.wait(2000)
     cy.get('#btn-addRepairJob').click({ force: true })
-    cy.get('#selSelectCar').click({ force: true }).type("9กณ").type("{downarrow}{enter}")
+    cy.wait(1000)
+    cy.get('#selSelectCar').click({ force: true }).type("9", { force: true }).wait(1000).type("{downarrow}{enter}", { force: true })
 
     // เพิ่มสินค้า
     cy.get('.col-xl-3 > .btn').click({ force: true })
-    cy.get('#trTireCatalog0 > .text-left').contains("เพิ่มยาง")
-    cy.get('#trTireCatalog0 > :nth-child(2)').contains("เพิ่มยาง")
-    cy.get('#dotM-13043').click({ force: true })
-    cy.get('#dotModal-13043 > .modal-dialog > .modal-content > .modal-body > .table > tbody > tr > :nth-child(3) > #amount-0 > .el-input-number__increase > .el-icon-plus')
-        .click({ force: true }).click({ force: true })
-    cy.get('#dotModal-13043 > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
+    cy.get('#tab-PART').click({ force: true })
+    cy.get('#pane-PART > .d-xl-block > .table > tbody > :nth-child(1) > :nth-child(1)').should("contain.text", "เพิ่มอะไหล่")
+    cy.get('#addSpare-13045').click({ force: true })
     cy.get('#Product > .modal-dialog > .modal-content > .modal-header > .close').click()
 
-    cy.get('#discount').click({ force: true }).clear({ force: true }).type("10", { force: true })
-    cy.get('#discountPrice').click({ force: true })
+    //เช็คสินค้า
+    cy.get('#dataliquid-0').should("contain.text", "อะไหล่")
 
-    cy.get('#totalpricetire-0').contains("200.00")
-    cy.get('#afterDiscount').contains("190.00")
-    cy.get('#paymentPrice').contains("203.30")
+    // ส่วนลดรายชิ้น
+    cy.get(':nth-child(6) > .row > .mt-3 > .form-control').click({ force: true }).clear({ force: true }).type("5", { force: true })
+
+    // เช็คราคา
+    cy.get('#pricetotal').should("contain.text", "190.00")
+    cy.get('#afterDiscount').should("contain.text", "190.00")
+    cy.get('#paymentPrice').should("contain.text", "203.30")
 
     check()
-
-    cy.get(':nth-child(1) > .calculator-form > #txtNote').click().type("test")
 
     // เปิดใบเสนอราคา
     cy.get('#btncreateQuotation').click()
@@ -106,8 +100,8 @@ const quotation = () => {
 const check = () => {
     const job = [
         {
-            price: 100,
-            qty: 2,
+            price: 200,
+            qty: 1,
             discount: 10,
         }
     ]
@@ -141,20 +135,21 @@ const check = () => {
 
     cy.get('#afterDiscount').contains(discount)
     cy.get('#paymentPrice').contains(paymentPrice)
-
 }
 // เปิดงานซ่อมบำรุงจากใบเสนอราคา
 const start_job = () => {
     cy.wait(1000)
-    cy.visit("https://herodemo.autopair.co/workshop/quotation/info/77")
+    cy.visit("https://herodemo.autopair.co/workshop/quotation/info/76")
     cy.wait(1000)
 
     // สถานะรอลูกค้ายืนยัน
     cy.get('.status-border').contains("รอลูกค้ายืนยัน")
-    cy.get('#podata-0').contains("เพิ่มยาง")
-    cy.get('#totalPrice').contains("200.00")
+    cy.get('#podata-0').contains("เพิ่มอะไหล่")
+    // cy.get('#podatades-0').contains("test")
+    cy.get('#totalPrice').contains("190.00")
     cy.get('#afterDiscount').contains("190.00")
     cy.get('#paymentPrice').contains("203.30")
+
     check()
 
     cy.get('#btngotoCreate').click()
@@ -162,8 +157,8 @@ const start_job = () => {
     // ใส่ข้อมูลพนักงานซ่อม
     cy.get('#selSelectmechanicId').click({ force: true }).type("ช่างซ่อม", { force: true }).type("{downarrow}{downarrow}{enter}", { force: true })
 
-    cy.get('#tiredata-0').contains("เพิ่มยาง")
-    cy.get('#totalpricetireenduser-0').contains("200.00")
+    cy.get('#datapart-0').contains("เพิ่มอะไหล่")
+    cy.get('#partproductlatestSalePricetotal-0').contains("190.00")
     cy.get('#afterDiscount').contains("190.00")
     cy.get('#paymentPrice').contains("203.30")
     check()
@@ -180,13 +175,14 @@ const start_job = () => {
 }
 const start_job1 = () => {
     cy.wait(1000);
-    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0043")
+    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0042")
     cy.wait(1000);
 
     // สถานะรอซ่อมบำรุง
     cy.get('.status-border').contains("รอซ่อมบำรุง")
-    cy.get('#podata-0').contains("เพิ่มยาง")
-    cy.get('#totalPrice').contains("200.00")
+    cy.get('#podata-0').contains("เพิ่มอะไหล่")
+    // cy.get('#podatades-0').contains("test")
+    cy.get('#totalPrice').contains("190.00")
     cy.get('#afterDiscount').contains("190.00")
     cy.get('#paymentPrice').contains("203.30")
     check()
@@ -198,8 +194,9 @@ const start_job1 = () => {
 
     // สถานะกำลังซ่อมบำรุง
     cy.get('.status-border').contains("กำลังซ่อมบำรุง")
-    cy.get('#podata-0').contains("เพิ่มยาง")
-    cy.get('#totalPrice').contains("200.00")
+    cy.get('#podata-0').contains("เพิ่มอะไหล่")
+    // cy.get('#podatades-0').contains("test")
+    cy.get('#totalPrice').contains("190.00")
     cy.get('#afterDiscount').contains("190.00")
     cy.get('#paymentPrice').contains("203.30")
     check()
@@ -212,8 +209,9 @@ const start_job1 = () => {
 
     // สถานะซ่อมบำรุงเสร็จสิ้น
     cy.get('.status-border').contains("รายการเสร็จสิ้น")
-    cy.get('#podata-0').contains("เพิ่มยาง")
-    cy.get('#totalPrice').contains("200.00")
+    cy.get('#podata-0').contains("เพิ่มอะไหล่")
+    // cy.get('#podatades-0').contains("test")
+    cy.get('#totalPrice').contains("190.00")
     cy.get('#afterDiscount').contains("190.00")
     cy.get('#paymentPrice').contains("203.30")
     check()
