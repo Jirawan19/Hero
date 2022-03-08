@@ -220,6 +220,7 @@ const start_job1 = () => {
     cy.wait(2000)
     cy.get('.swal2-confirm').click()
 
+    // รับสินค้า ro เข้าคลัง
     cy.get('#btnrecheckUpdateInventory').click()
     cy.get('.swal2-confirm').click()
     cy.wait(500)
