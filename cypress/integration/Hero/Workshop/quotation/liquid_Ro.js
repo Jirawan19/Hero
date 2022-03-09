@@ -175,13 +175,22 @@ const quotation = () => {
     cy.get('.col-xl-3 > .btn').click({ force: true })
     cy.get('#tab-LIQUID').click()
     cy.wait(500)
-    cy.get('#addLiquidPo-13042').click()
-    cy.get('.el-notification__closeBtn').click()
+    cy.get('#pane-LIQUID > :nth-child(1) > :nth-child(3) > .mt-2 > #openModelAddMag').click({ force: true })
+    cy.get('#partName').click().type("ของเหลว ro")
+    taxManufac(getRandomNumberPsrtNo(0, 2))
+    cy.get('#brandNames').click().type("ro")
+    cy.get('#sizel').click().type("1")
+    cy.get('#priceParts').click().type("1000")
+    cy.get('#detailParts').click().type("ใบเสนอราคาของเหลว ro")
+    cy.get('#btnAddRoParts').click()
     cy.get('#Product > .modal-dialog > .modal-content > .modal-header > .close').click({ force: true })
 
     // เช็ครายละเอียด
-    cy.get('#dataliquid-0').should("contain.text", "น้ำมันเครื่อง")
-    cy.get(':nth-child(6) > .row > .mt-3 > .form-control').clear({ force: true }).click({ force: true }).type("10")
+    cy.get('#listRoItem-0 > #listRoItemdata-0').should("contain.text", "ของเหลว ro")
+    cy.get('#listRoItem-0 > #listRoItemdes-0').contains("ใบเสนอราคาของเหลว ro")
+
+    cy.get(':nth-child(6) > .row > .mt-3 > .form-control').clear({ force: true }).click({ force: true }).type("10",{ force: true })
+
     cy.get('#pricetotal').should("contain.text", "900.00")
     cy.get('#discount').clear({ force: true }).click({ force: true }).type("20", { force: true })
     cy.get('#discountPrice').click({ force: true })
@@ -194,15 +203,24 @@ const quotation = () => {
     cy.get('#btncreateQuotation').click()
     cy.get('.swal2-confirm').click()
 }
+const getRandomNumberPsrtNo = (min, max) => {
+    0, 0;
+    return Math.random() * (max - min) + min;
+};
+const taxManufac = (textNo) => {
+    cy.get('#Manufacturerl').click().type(textNo);
+};
 // เปิดงานซ่อมบำรุงจากใบเสนอราคา
 const start_job = () => {
     cy.wait(1000)
-    cy.visit("https://herodemo.autopair.co/workshop/quotation/info/107")
+    cy.visit("https://herodemo.autopair.co/workshop/quotation/info/115")
     cy.wait(1000)
 
     // สถานะรอลูกค้ายืนยัน
     cy.get('.status-border').should("contain.text", "รอลูกค้ายืนยัน")
-    cy.get('#podata-0').should("contain.text", "น้ำมันเครื่อง")
+    cy.get('#rolistdata-0').should("contain.text", "ของเหลว ro")
+    cy.get('#rolistdescription-0').contains("ใบเสนอราคาของเหลว ro")
+
     cy.get('#totalpricetire-0').should("contain.text", "900.00")
     cy.get('#afterDiscount').should("contain.text", "880.00")
     cy.get('#vatPrice').should("contain.text", "61.60")
@@ -214,11 +232,14 @@ const start_job = () => {
     // ใส่ข้อมูลพนักงานซ่อม
     cy.get('#selSelectmechanicId').click({ force: true }).type("ช่างซ่อม", { force: true }).type("{downarrow}{downarrow}{enter}", { force: true })
 
-    cy.get('#dataliquid-0').should("contain.text", "น้ำมันเครื่อง")
+    cy.get('#listRoItem-0 > #listRoItemdata-0').should("contain.text", "ของเหลว ro")
+    cy.get('#listRoItem-0 > #listRoItemdes-0').contains("ใบเสนอราคาของเหลว ro")
+    
     cy.get('#partproductlatestSalePricetotal-0').should("contain.text", "900.00")
     cy.get('#afterDiscount').should("contain.text", "880.00")
     cy.get('#vatPrice').should("contain.text", "61.60")
     cy.get('#paymentPrice').should("contain.text", "941.60")
+    check()
 
     // เปิดงานซ่อม
     cy.get('#btncreateWalkInWorkshopJob').click({ force: true })
@@ -226,13 +247,15 @@ const start_job = () => {
 }
 const start_job1 = () => {
     cy.wait(1000);
-    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0059")
+    cy.visit("https://herodemo.autopair.co/workshop/jobs/ATH-00294-0322-0062")
     cy.wait(1000);
 
     // สถานะรอซ่อมบำรุง
     cy.get('.status-border').should("contain.text", "รอซ่อมบำรุง")
-    cy.get('#podata-0').should("contain.text", "น้ำมันเครื่อง")
-    cy.get('#totalpoprice-0').should("contain.text", "900.00")
+    cy.get('#rolistdata-0').should("contain.text", "ของเหลว ro")
+    cy.get('#rolistdescription-0').contains("ใบเสนอราคาของเหลว ro")
+
+    cy.get('#totalPrice').should("contain.text", "900.00")
     cy.get('#afterDiscount').should("contain.text", "880.00")
     cy.get('#vatPrice').should("contain.text", "61.60")
     cy.get('#paymentPrice').should("contain.text", "941.60")
@@ -245,8 +268,10 @@ const start_job1 = () => {
 
     // สถานะกำลังซ่อมบำรุง
     cy.get('.status-border').should("contain.text", "กำลังซ่อมบำรุง")
-    cy.get('#podata-0').should("contain.text", "น้ำมันเครื่อง")
-    cy.get('#totalpoprice-0').should("contain.text", "900.00")
+    cy.get('#rolistdata-0').should("contain.text", "ของเหลว ro")
+    cy.get('#rolistdescription-0').contains("ใบเสนอราคาของเหลว ro")
+
+    cy.get('#totalPrice').should("contain.text", "900.00")
     cy.get('#afterDiscount').should("contain.text", "880.00")
     cy.get('#vatPrice').should("contain.text", "61.60")
     cy.get('#paymentPrice').should("contain.text", "941.60")
@@ -258,10 +283,18 @@ const start_job1 = () => {
     cy.wait(2000)
     cy.get('.swal2-confirm').click()
 
+    // รับสินค้า ro เข้าคลัง
+    cy.get('#btnrecheckUpdateInventory').click()
+    cy.get('.swal2-confirm').click()
+    cy.wait(500)
+    cy.get('.swal2-confirm').click()
+
     // สถานะซ่อมบำรุงเสร็จสิ้น
     cy.get('.status-border').should("contain.text", "รายการเสร็จสิ้น")
-    cy.get('#podata-0').should("contain.text", "น้ำมันเครื่อง")
-    cy.get('#totalpoprice-0').should("contain.text", "900.00")
+    cy.get('#rolistdata-0').should("contain.text", "ของเหลว ro")
+    cy.get('#rolistdescription-0').contains("ใบเสนอราคาของเหลว ro")
+
+    cy.get('#totalPrice').should("contain.text", "900.00")
     cy.get('#afterDiscount').should("contain.text", "880.00")
     cy.get('#vatPrice').should("contain.text", "61.60")
     cy.get('#paymentPrice').should("contain.text", "941.60")
@@ -282,7 +315,7 @@ const liquid = () => {
     cy.get("#btn-addInventory").click({ force: true });
     cy.get('#tab-LIQUID').click({ force: true });
 
-    cy.get('#lidquid-name').click().type("น้ำมันเครื่อง").type("{downarrow}{downarrow}{enter}")
+    cy.get('#lidquid-name').click().type("ของเหลว ro").type("{downarrow}{downarrow}{enter}")
     taxliquid1(getRandomNumberliquid(0, 10));
     taxliquid2(getRandomNumberliquid(0, 10));
 
